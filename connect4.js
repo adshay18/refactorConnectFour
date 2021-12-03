@@ -138,5 +138,5 @@ startButton.addEventListener('click', function(e){
     let p2 = new Player(color2);
     new Game(p1, p2);
     startButton.textContent = 'Restart';
-  } else alert('Please choose valid colors!')
+  } else alert('Please choose valid colors!');
 });
