@@ -131,8 +131,12 @@ class Player {
 
 const startButton = document.getElementById('start');
 startButton.addEventListener('click', function(e){
-  let p1 = new Player(document.getElementById('p1-color').value);
-  let p2 = new Player(document.getElementById('p2-color').value);
-  new Game(p1, p2);
-  startButton.textContent = 'Restart';
+  let color1 = document.getElementById('p1-color').value;
+  let color2 = document.getElementById('p2-color').value;
+  if (CSS.supports('color', color1) && CSS.supports('color', color2)) {
+    let p1 = new Player(color1);
+    let p2 = new Player(color2);
+    new Game(p1, p2);
+    startButton.textContent = 'Restart';
+  } else alert('Please choose valid colors!')
 });
