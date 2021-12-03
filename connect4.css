@@ -1,34 +1,38 @@
 /* game board table */
+body {
+	background-color: rgb(250, 168, 114);
+	text-align: center;
+}
+
+h1 {
+	text-align: center;
+	font-size: 4em;
+	color: #e6e6e6;
+	font-family: 'Amatic SC', cursive;
+}
 
 #board td {
-  width: 50px;
-  height: 50px;
-  border: solid 1px #666;
+	width: 60px;
+	height: 60px;
+	border: solid 1px rgb(75, 75, 75);
 }
-
-/* pieces are div within game table cells: draw as colored circles */
 
 .piece {
-  margin: 5px;
-  width: 80%;
-  height: 80%;
-  border-radius: 50%;
+	margin: 5px;
+	width: 80%;
+	height: 80%;
+	border-radius: 50%;
 }
-
-.piece.p1 {
-  background-color: red;
-}
-
-.piece.p2 {
-  background-color: blue;
-}
-
-/* column-top is table row of clickable areas for each column */
 
 #column-top td {
-  border: dashed 1px lightgray;
+	border: dashed 1px darkgray;
 }
 
 #column-top td:hover {
-  background-color: gold;
+	background-color: gold;
+}
+
+#board {
+	margin: 0 auto;
+	box-shadow: 10px 10px 2px rgba(0, 0, 0, 0.651);
 }

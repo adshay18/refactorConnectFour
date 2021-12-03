@@ -1,15 +1,15 @@
 /** Connect Four*/
 
 class Game {
-  constructor(height, width) {
+  constructor(p1, p2, height = 6, width = 7) {
     this.height = height;
     this.width = width;
-    this.currPlayer = 1;
+    this.player = [p1, p2];
+    this.currPlayer = p1;
     this.makeBoard();
     this.makeHtmlBoard();
     this.findSpotForCol();
   };
-
   makeBoard() {
     this.board = [];
     for (let y = 0; y < this.height; y++) {
@@ -19,6 +19,7 @@ class Game {
 
   makeHtmlBoard() {
     const board = document.getElementById('board');
+    board.innerHTML = '';
     const top = document.createElement('tr');
     this.bindClickToGame = this.handleClick.bind(this);
 
@@ -57,8 +58,9 @@ class Game {
   placeInTable(y, x) {
     const piece = document.createElement('div');
     piece.classList.add('piece');
-    piece.classList.add(`p${this.currPlayer}`);
+    
     piece.style.top = -50 * (y + 2);
+    piece.style.backgroundColor = this.currPlayer.color;
   
     const spot = document.getElementById(`${y}-${x}`);
     spot.append(piece);
@@ -66,6 +68,8 @@ class Game {
 
   endGame(msg) {
     alert(msg);
+    const top = document.getElementById('column-top')
+    top.removeEventListener('click', this.bindClickToGame);
   };
 
   handleClick(evt) {
@@ -87,7 +91,7 @@ class Game {
       return this.endGame('Tie!');
     }
       
-    this.currPlayer = this.currPlayer === 1 ? 2 : 1;
+    this.currPlayer = this.currPlayer === this.player[0] ? this.player[1] : this.player[0];
   };
 
   checkForWin() {
@@ -116,4 +120,19 @@ class Game {
   };
 }
 
-new Game(6, 7);
+class Player {
+  constructor(color) {
+    this.color = color;
+  }
+};
+
+// let p1 = new Player('orfdafds');
+// let p2 = new Player('blue');
+
+const startButton = document.getElementById('start');
+startButton.addEventListener('click', function(e){
+  let p1 = new Player(document.getElementById('p1-color').value);
+  let p2 = new Player(document.getElementById('p2-color').value);
+  new Game(p1, p2);
+  startButton.textContent = 'Restart';
+});
